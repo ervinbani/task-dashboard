@@ -1,0 +1,50 @@
+// types/index.ts
+export type TaskStatus = "pending" | "in-progress" | "completed";
+
+export interface Task {
+  id: string;
+  title: string;
+  description: string;
+  status: TaskStatus;
+  priority: "low" | "medium" | "high";
+  dueDate: string;
+}
+
+export interface TaskListProps {
+  tasks: Task[];
+  onStatusChange: (taskId: string, newStatus: TaskStatus) => void;
+  onDelete: (taskId: string) => void;
+}
+// types/index.ts
+export interface TaskItemProps {
+  task: Task;
+  onStatusChange: (taskId: string, newStatus: TaskStatus) => void;
+  onDelete: (taskId: string) => void;
+}
+
+// types/index.ts
+export interface TaskFilterProps {
+  onFilterChange: (filters: {
+    status?: TaskStatus;
+    priority?: "low" | "medium" | "high";
+  }) => void;
+}
+
+export interface TaskFormProps {
+  onAddTask: (task: Task) => void;
+  onCancel: () => void;
+}
+
+export interface TaskListPropsExtended extends TaskListProps {
+  onAddTask: () => void;
+  onSortByDate: () => void;
+  onMoveUp: (taskId: string) => void;
+  onMoveDown: (taskId: string) => void;
+}
+
+export interface TaskItemPropsExtended extends TaskItemProps {
+  onMoveUp: (taskId: string) => void;
+  onMoveDown: (taskId: string) => void;
+  isFirst: boolean;
+  isLast: boolean;
+}
