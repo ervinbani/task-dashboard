@@ -19,6 +19,8 @@ import {
 import { TaskList } from "../TaskList/TaskList";
 import { TaskForm } from "../TaskForm/TaskForm";
 import { TaskFilter } from "../TaskFilter/TaskFilter";
+import { ThemeToggle } from "../ThemeToggle/ThemeToggle";
+import type { Theme } from "../../types";
 import "./Dashboard.css";
 
 /**
@@ -36,6 +38,10 @@ export const Dashboard: React.FC = () => {
   const [sortBy, setSortBy] = useState<SortOption>("date");
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [editingTaskId, setEditingTaskId] = useState<string | null>(null);
+  const [theme, setTheme] = useState<Theme>(() => {
+    const savedTheme = localStorage.getItem("theme");
+    return (savedTheme as Theme) || "light";
+  });
 
   // Helper function to update tasks and save to localStorage
   const updateTasks = (newTasks: Task[] | ((prev: Task[]) => Task[])) => {
@@ -114,6 +120,15 @@ export const Dashboard: React.FC = () => {
     setIsFormOpen(true);
   };
 
+  // Toggle theme between light and dark
+  const toggleTheme = () => {
+    setTheme((prev) => {
+      const newTheme = prev === "light" ? "dark" : "light";
+      localStorage.setItem("theme", newTheme);
+      return newTheme;
+    });
+  };
+
   // Export tasks to JSON file
   const handleExport = () => {
     exportTasksToJSON(tasks);
@@ -138,7 +153,9 @@ export const Dashboard: React.FC = () => {
           // Add imported tasks to existing ones (avoid duplicates by ID)
           updateTasks((prevTasks) => {
             const existingIds = new Set(prevTasks.map((t) => t.id));
-            const newTasks = importedTasks.filter((t) => !existingIds.has(t.id));
+            const newTasks = importedTasks.filter(
+              (t) => !existingIds.has(t.id)
+            );
             return [...newTasks, ...prevTasks];
           });
         }
@@ -159,12 +176,17 @@ export const Dashboard: React.FC = () => {
   const stats = calculateStats(tasks);
 
   return (
-    <div className="dashboard">
+    <div className={`dashboard ${theme}`}>
       <header className="dashboard-header">
-        <h1 className="dashboard-title">📝 Task Dashboard</h1>
-        <p className="dashboard-subtitle">
-          Manage your tasks efficiently and stay organized
-        </p>
+        <div className="header-content">
+          <div>
+            <h1 className="dashboard-title">📝 Task Dashboard</h1>
+            <p className="dashboard-subtitle">
+              Manage your tasks efficiently and stay organized
+            </p>
+          </div>
+          <ThemeToggle theme={theme} onToggle={toggleTheme} />
+        </div>
       </header>
 
       {/* Statistics */}

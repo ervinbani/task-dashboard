@@ -15,9 +15,9 @@
 
 /* Form Container */
 .task-form-container {
-  background: white;
+  background: var(--bg-card, white);
   border-radius: 12px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 40px var(--shadow, rgba(0, 0, 0, 0.2));
   width: 100%;
   max-width: 600px;
   max-height: 90vh;
@@ -85,10 +85,12 @@
 .form-select {
   width: 100%;
   padding: 10px 12px;
-  border: 2px solid #e0e0e0;
+  border: 2px solid var(--border-color, #e0e0e0);
   border-radius: 6px;
   font-size: 14px;
   font-family: inherit;
+  background-color: var(--bg-card, white);
+  color: var(--text-primary, #333);
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 

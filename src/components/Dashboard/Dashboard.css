@@ -1,8 +1,45 @@
+/* ============================================================================
+   THEME VARIABLES
+   ============================================================================ */
+
+/* Light Theme (Default) */
+.dashboard {
+  --bg-primary: linear-gradient(to bottom, #f5f7fa 0%, #c3cfe2 100%);
+  --bg-card: #ffffff;
+  --bg-hover: #f5f5f5;
+  --text-primary: #333;
+  --text-secondary: #666;
+  --text-muted: #999;
+  --border-color: #e0e0e0;
+  --shadow: rgba(0, 0, 0, 0.1);
+  --shadow-hover: rgba(0, 0, 0, 0.15);
+}
+
+/* Dark Theme */
+.dashboard.dark {
+  --bg-primary: linear-gradient(to bottom, #1a1a2e 0%, #16213e 100%);
+  --bg-card: #0f3460;
+  --bg-hover: #1a4d7a;
+  --text-primary: #e0e0e0;
+  --text-secondary: #b0b0b0;
+  --text-muted: #808080;
+  --border-color: #2a5a8a;
+  --shadow: rgba(0, 0, 0, 0.3);
+  --shadow-hover: rgba(0, 0, 0, 0.5);
+}
+
+/* ============================================================================
+   DASHBOARD CONTAINER
+   ============================================================================ */
+
 /* Dashboard Container */
 .dashboard {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  min-height: 100vh;
+  background: var(--bg-primary);
+  transition: background 0.3s ease;
 }
 
 /* Header */
@@ -11,17 +48,26 @@
   margin-bottom: 32px;
 }
 
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
 .dashboard-title {
   margin: 0 0 8px 0;
   font-size: 36px;
   font-weight: 700;
-  color: #333;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
 }
 
 .dashboard-subtitle {
   margin: 0;
   font-size: 16px;
-  color: #666;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
 }
 
 /* Statistics Cards */
@@ -76,10 +122,11 @@
 
 /* Main Content */
 .dashboard-main {
-  background: white;
+  background: var(--bg-card);
   border-radius: 12px;
   padding: 24px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px var(--shadow);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* Dashboard Actions */
@@ -142,6 +189,11 @@
 @media (max-width: 768px) {
   .dashboard {
     padding: 16px;
+  }
+
+  .header-content {
+    flex-direction: column;
+    text-align: center;
   }
 
   .dashboard-title {
