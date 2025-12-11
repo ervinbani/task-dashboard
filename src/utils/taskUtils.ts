@@ -73,19 +73,21 @@ export const sortTasks = (tasks: Task[], sortBy: SortOption): Task[] => {
           new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
       );
 
-    case "priority":
+    case "priority": {
       // Sort by priority (high → medium → low)
       const priorityOrder = { high: 0, medium: 1, low: 2 };
       return tasksCopy.sort(
         (a, b) => priorityOrder[a.priority] - priorityOrder[b.priority]
       );
+    }
 
-    case "status":
+    case "status": {
       // Sort by status (pending → in-progress → completed)
       const statusOrder = { pending: 0, "in-progress": 1, completed: 2 };
       return tasksCopy.sort(
         (a, b) => statusOrder[a.status] - statusOrder[b.status]
       );
+    }
 
     case "title":
       // Sort alphabetically by title

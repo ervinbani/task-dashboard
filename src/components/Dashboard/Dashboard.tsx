@@ -53,7 +53,11 @@ export const Dashboard: React.FC = () => {
     });
   };
 
-  // Change task status to specified value
+  /**
+   * Updates the status of a task
+   * @param taskId - The unique identifier of the task to update
+   * @param newStatus - The new status to set (pending, in-progress, or completed)
+   */
   const handleToggleStatus = (taskId: string, newStatus: TaskStatus) => {
     updateTasks((prevTasks) =>
       prevTasks.map((task) =>
@@ -62,7 +66,10 @@ export const Dashboard: React.FC = () => {
     );
   };
 
-  // Delete a task
+  /**
+   * Deletes a task after user confirmation
+   * @param taskId - The unique identifier of the task to delete
+   */
   const handleDelete = (taskId: string) => {
     if (confirm("Are you sure you want to delete this task?")) {
       updateTasks((prevTasks) =>
@@ -71,14 +78,21 @@ export const Dashboard: React.FC = () => {
     }
   };
 
-  // Add a new task
+  /**
+   * Creates a new task and adds it to the task list
+   * @param formData - The form data containing task details
+   */
   const handleAddTask = (formData: TaskFormData) => {
     const newTask = createTask(formData);
     updateTasks((prevTasks) => [newTask, ...prevTasks]);
     setIsFormOpen(false);
   };
 
-  // Edit a task - update existing task
+  /**
+   * Updates an existing task with new form data
+   * Preserves the task's id, status, and createdAt fields
+   * @param formData - The form data containing updated task details
+   */
   const handleEditTask = (formData: TaskFormData) => {
     if (!editingTaskId) return;
 
@@ -102,13 +116,19 @@ export const Dashboard: React.FC = () => {
     setEditingTaskId(null);
   };
 
-  // Open edit form with task data
+  /**
+   * Opens the edit form with the selected task's data pre-filled
+   * @param taskId - The unique identifier of the task to edit
+   */
   const handleEdit = (taskId: string) => {
     setEditingTaskId(taskId);
     setIsFormOpen(true);
   };
 
-  // Toggle theme between light and dark
+  /**
+   * Toggles between light and dark theme
+   * Persists the preference to localStorage
+   */
   const toggleTheme = () => {
     setTheme((prev) => {
       const newTheme = prev === "light" ? "dark" : "light";
@@ -117,12 +137,19 @@ export const Dashboard: React.FC = () => {
     });
   };
 
-  // Export tasks to JSON file
+  /**
+   * Exports all tasks to a JSON file
+   * Downloads the file to the user's device
+   */
   const handleExport = () => {
     exportTasksToJSON(tasks);
   };
 
-  // Import tasks from JSON file
+  /**
+   * Imports tasks from a JSON file
+   * Validates the file format and adds new tasks without duplicates
+   * @param e - File input change event
+   */
   const handleImport = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;

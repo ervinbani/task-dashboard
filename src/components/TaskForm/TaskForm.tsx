@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { TaskFormProps, TaskFormData, TaskPriority } from "../../types";
+import type { TaskFormProps, TaskFormData } from "../../types";
 import { validateTask } from "../../utils/taskUtils";
 import "./TaskForm.css";
 
@@ -29,7 +29,11 @@ export const TaskForm: React.FC<TaskFormProps> = ({
     dueDate?: string;
   }>({});
 
-  // Handle input changes
+  /**
+   * Handles input changes for form fields
+   * Clears validation errors for the field being edited
+   * @param e - Input change event from form fields
+   */
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
@@ -47,7 +51,12 @@ export const TaskForm: React.FC<TaskFormProps> = ({
     }
   };
 
-  // Handle form submission
+  /**
+   * Handles form submission
+   * Validates form data before submission
+   * Resets form after successful submission in create mode
+   * @param e - Form submit event
+   */
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
