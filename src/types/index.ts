@@ -73,7 +73,7 @@ export interface TaskStats {
  */
 export interface TaskItemProps {
   task: Task;
-  onToggleStatus: (taskId: string) => void;
+  onToggleStatus: (taskId: string, newStatus: TaskStatus) => void;
   onDelete: (taskId: string) => void;
   onEdit: (taskId: string) => void;
 }
@@ -101,7 +101,7 @@ export interface TaskFilterProps {
  */
 export interface TaskListProps {
   tasks: Task[];
-  onToggleStatus: (taskId: string) => void;
+  onToggleStatus: (taskId: string, newStatus: TaskStatus) => void;
   onDelete: (taskId: string) => void;
   onEdit: (taskId: string) => void;
   sortBy: SortOption;

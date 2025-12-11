@@ -53,24 +53,12 @@ export const Dashboard: React.FC = () => {
     });
   };
 
-  // Toggle task status (pending → in-progress → completed → pending)
-  const handleToggleStatus = (taskId: string) => {
+  // Change task status to specified value
+  const handleToggleStatus = (taskId: string, newStatus: TaskStatus) => {
     updateTasks((prevTasks) =>
-      prevTasks.map((task) => {
-        if (task.id === taskId) {
-          // Cycle through statuses
-          let newStatus: TaskStatus;
-          if (task.status === "pending") {
-            newStatus = "in-progress";
-          } else if (task.status === "in-progress") {
-            newStatus = "completed";
-          } else {
-            newStatus = "pending";
-          }
-          return { ...task, status: newStatus };
-        }
-        return task;
-      })
+      prevTasks.map((task) =>
+        task.id === taskId ? { ...task, status: newStatus } : task
+      )
     );
   };
 

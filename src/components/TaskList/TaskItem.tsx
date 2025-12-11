@@ -1,4 +1,4 @@
-import type { TaskItemProps } from "../../types";
+import type { TaskItemProps, TaskStatus } from "../../types";
 import { formatDate } from "../../utils/taskUtils";
 import "./TaskItem.css";
 
@@ -54,6 +54,11 @@ export const TaskItem: React.FC<TaskItemProps> = ({
     }
   };
 
+  // Handle status change from dropdown
+  const handleStatusChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    onToggleStatus(task.id, e.target.value as TaskStatus);
+  };
+
   return (
     <div className={`task-item ${getStatusClass()}`}>
       <div className="task-header">
@@ -75,16 +80,21 @@ export const TaskItem: React.FC<TaskItemProps> = ({
       <div className="task-footer">
         <div className="task-meta">
           <span className="task-date">📅 {formatDate(task.dueDate)}</span>
+          <div className="status-selector">
+            <select
+              value={task.status}
+              onChange={handleStatusChange}
+              className={`status-dropdown ${getStatusClass()}`}
+              title="Change status"
+            >
+              <option value="pending">Pending</option>
+              <option value="in-progress">In Progress</option>
+              <option value="completed">Completed</option>
+            </select>
+          </div>
         </div>
 
         <div className="task-actions">
-          <button
-            className="btn btn-toggle"
-            onClick={() => onToggleStatus(task.id)}
-            title="Toggle status"
-          >
-            {task.status === "completed" ? "↩️" : "✓"}
-          </button>
           <button
             className="btn btn-edit"
             onClick={() => onEdit(task.id)}
