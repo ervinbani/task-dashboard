@@ -9,7 +9,10 @@ interface ThemeToggleProps {
  * ThemeToggle Component
  * Toggle switch for changing between light and dark mode
  */
-export const ThemeToggle: React.FC<ThemeToggleProps> = ({ theme, onToggle }) => {
+export const ThemeToggle: React.FC<ThemeToggleProps> = ({
+  theme,
+  onToggle,
+}) => {
   return (
     <div className="theme-toggle">
       <span className="theme-toggle-label">☀️</span>
