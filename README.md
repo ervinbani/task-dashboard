@@ -27,7 +27,7 @@ A modern, feature-rich task management application built with React, TypeScript,
 ## 📋 Prerequisites
 
 - Node.js (v16 or higher)
-- npm or yarn package manager
+- npm
 
 ## 🔧 Installation
 
@@ -42,8 +42,7 @@ A modern, feature-rich task management application built with React, TypeScript,
 
    ```bash
    npm install
-   # or
-   yarn install
+
    ```
 
 3. **Start the development server**
@@ -99,56 +98,21 @@ The production-ready files will be in the `dist` folder.
 
 1. **Status Filter**
 
-   - Select "Pending" → Shows only pending tasks
-   - Select "In Progress" → Shows only in-progress tasks
-   - Select "Completed" → Shows only completed tasks
-   - Select "All" → Shows all tasks
-
 2. **Priority Filter**
-
-   - Select "High" → Shows only high priority tasks
-   - Select "Medium" → Shows only medium priority tasks
-   - Select "Low" → Shows only low priority tasks
-   - Select "All" → Shows all tasks
 
 3. **Search Filter**
 
-   - Type in search box → Filters tasks by title and description
-   - Clear search → Shows all tasks (respecting other filters)
-
 4. **Sorting**
 
-   - Sort by Date → Newest tasks first
-   - Sort by Priority → High → Medium → Low
-   - Sort by Status → Pending → In Progress → Completed
-   - Sort by Title → Alphabetical order
-
 5. **Combined Filters**
-   - Apply multiple filters simultaneously
-   - Verify active filter badges appear
-   - Click "Clear All" → Removes all filters
 
 ### Component Interactions
 
 1. **Create Task**
 
-   - Click "Add New Task" button
-   - Fill form and submit → Task appears in list
-   - Click "Cancel" → Form closes without saving
-
 2. **Edit Task**
 
-   - Click edit button (✏️) on any task
-   - Form opens with pre-filled data
-   - Modify and submit → Changes are saved
-   - Cancel → No changes applied
-
 3. **Delete Task**
-
-   - Click delete button (🗑️) on any task
-   - Confirmation dialog appears
-   - Confirm → Task is removed
-   - Cancel → Task remains
 
 4. **Change Status**
 
@@ -165,30 +129,14 @@ The production-ready files will be in the `dist` folder.
    - Try invalid file → Shows error message
 
 6. **Theme Toggle**
-   - Click theme toggle switch
-   - Theme changes immediately
-   - Preference is saved to localStorage
-   - Refresh page → Theme persists
 
 ### Responsive Design Testing
 
 1. **Desktop (> 768px)**
 
-   - All features visible
-   - Multi-column layout for stats
-   - Side-by-side filter controls
-
 2. **Tablet (600px - 768px)**
 
-   - Responsive grid adjustments
-   - Task cards stack appropriately
-   - Buttons remain accessible
-
 3. **Mobile (< 600px)**
-   - Single column layout
-   - Touch-friendly buttons
-   - Form fills screen
-   - Horizontal scrolling prevented
 
 ### LocalStorage Persistence
 
@@ -198,42 +146,6 @@ The production-ready files will be in the `dist` folder.
 4. **Edit task** → Refresh page → Changes persist
 
 ## 📁 Project Structure
-
-```
-task-dashboard/
-├── src/
-│   ├── components/
-│   │   ├── Dashboard/
-│   │   │   ├── Dashboard.tsx       # Main container component
-│   │   │   └── Dashboard.css       # Dashboard styles
-│   │   ├── TaskList/
-│   │   │   ├── TaskList.tsx        # Task list container
-│   │   │   ├── TaskList.css        # List styles
-│   │   │   ├── TaskItem.tsx        # Individual task card
-│   │   │   └── TaskItem.css        # Task item styles
-│   │   ├── TaskForm/
-│   │   │   ├── TaskForm.tsx        # Create/Edit form
-│   │   │   └── TaskForm.css        # Form styles
-│   │   ├── TaskFilter/
-│   │   │   ├── TaskFilter.tsx      # Filter controls
-│   │   │   └── TaskFilter.css      # Filter styles
-│   │   └── ThemeToggle/
-│   │       ├── ThemeToggle.tsx     # Theme switcher
-│   │       └── ThemeToggle.css     # Toggle styles
-│   ├── types/
-│   │   └── index.ts                # TypeScript type definitions
-│   ├── utils/
-│   │   └── taskUtils.ts            # Utility functions
-│   ├── App.tsx                     # Root component
-│   ├── App.css                     # Global styles
-│   └── main.tsx                    # Entry point
-├── public/                         # Static assets
-├── index.html                      # HTML template
-├── package.json                    # Dependencies
-├── tsconfig.json                   # TypeScript config
-├── vite.config.ts                  # Vite config
-└── README.md                       # This file
-```
 
 ## 🎯 Component Documentation
 
@@ -355,25 +267,3 @@ The application uses CSS variables for theming:
 - Text: #e0e0e0
 
 ## 🔑 Key TypeScript Types
-
-```typescript
-// Task object structure
-interface Task {
-  id: string;
-  title: string;
-  description: string;
-  status: TaskStatus;
-  priority: TaskPriority;
-  dueDate: string | null;
-  createdAt: string;
-}
-
-// Status options
-type TaskStatus = "pending" | "in-progress" | "completed";
-
-// Priority levels
-type TaskPriority = "low" | "medium" | "high";
-
-// Sort options
-type SortOption = "date" | "priority" | "status" | "title";
-```
